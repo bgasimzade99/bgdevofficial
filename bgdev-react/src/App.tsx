@@ -31,16 +31,23 @@ function GitHubPagesRedirect() {
   const location = useLocation();
   
   useEffect(() => {
-    // Check if we're on GitHub Pages and have a redirect query parameter
+    // Check for redirect parameter from static HTML files
     const queryParams = new URLSearchParams(location.search);
-    const redirectPath = queryParams.get('/');
+    const redirectPath = queryParams.get('redirect');
     
     if (redirectPath) {
+      // Navigate to the redirect path
+      window.history.replaceState(null, '', redirectPath);
+      window.location.reload();
+    }
+    
+    // Check if we're on GitHub Pages and have a redirect query parameter
+    const githubRedirectPath = queryParams.get('/');
+    
+    if (githubRedirectPath) {
       // Clean up the path and navigate
-      const cleanPath = redirectPath.replace(/~and~/g, '&');
-      // Use React Router's navigate instead of window.location.reload
+      const cleanPath = githubRedirectPath.replace(/~and~/g, '&');
       window.history.replaceState(null, '', cleanPath);
-      // Trigger a re-render by updating the location
       window.location.href = cleanPath;
     }
   }, [location]);
