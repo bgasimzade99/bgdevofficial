@@ -124,16 +124,6 @@ const Hero: React.FC = () => {
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="space-y-8"
           >
-                   <motion.div
-                     initial={{ opacity: 0, y: 20 }}
-                     animate={{ opacity: 1, y: 0 }}
-                     transition={{ delay: 0.2, duration: 0.6 }}
-                     className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-semibold text-white mb-4"
-                   >
-                     <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
-                     AI-Powered Solutions
-                   </motion.div>
-
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
@@ -168,10 +158,20 @@ const Hero: React.FC = () => {
               </motion.span>
             </motion.h1>
 
-            <motion.p
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
+              className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-semibold text-white mb-6"
+            >
+              <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
+              AI-Powered Solutions
+            </motion.div>
+
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.6, duration: 0.6 }}
               className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl px-4 sm:px-0"
             >
               We build AI-powered mobile and web applications that drive business growth. 
@@ -182,14 +182,14 @@ const Hero: React.FC = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
+              transition={{ delay: 0.7, duration: 0.6 }}
               className="flex flex-col sm:flex-row gap-4 px-4 sm:px-0"
             >
               <motion.a
                 href="#contact"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.6 }}
+                transition={{ delay: 1.3, duration: 0.6 }}
                 whileHover={{ 
                   scale: 1.05, 
                   y: -5,
@@ -218,7 +218,7 @@ const Hero: React.FC = () => {
                 href="#projects"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3, duration: 0.6 }}
+                transition={{ delay: 1.5, duration: 0.6 }}
                 whileHover={{ 
                   scale: 1.05, 
                   y: -5,
