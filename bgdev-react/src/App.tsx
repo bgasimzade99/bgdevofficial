@@ -39,6 +39,8 @@ function GitHubPagesRedirect() {
       // Clean up the path and navigate
       const cleanPath = redirectPath.replace(/~and~/g, '&');
       window.history.replaceState(null, '', cleanPath);
+      // Force a page reload to ensure React Router picks up the new path
+      window.location.reload();
     }
   }, [location]);
   
