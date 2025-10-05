@@ -50,7 +50,7 @@ const Header: React.FC = () => {
                   <img
                     src="/logo.svg"
                     alt="BGDev Logo"
-                    className="w-28 h-10 sm:w-44 sm:h-16 object-contain"
+                    className="w-32 h-12 sm:w-48 sm:h-18 object-contain"
                   />
           </motion.div>
           

@@ -116,19 +116,19 @@ const Hero: React.FC = () => {
       ))}
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
           {/* Left Content */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="space-y-8"
+            className="space-y-6 sm:space-y-8"
           >
             <motion.h1
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-tight tracking-tight"
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight tracking-tight"
             >
               <motion.span 
                 initial={{ opacity: 0, x: -50 }}
@@ -162,7 +162,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-lg sm:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl px-4 sm:px-0"
+              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl px-4 sm:px-0"
             >
               We build AI-powered mobile and web applications that drive business growth. 
               From productivity platforms to career development tools, we create digital 
@@ -173,7 +173,7 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-4 px-4 sm:px-0"
+              className="flex flex-col sm:flex-row gap-3 sm:gap-4 px-4 sm:px-0"
             >
               <motion.a
                 href="#contact"
@@ -186,7 +186,7 @@ const Hero: React.FC = () => {
                   boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 inline-flex items-center justify-center group text-base sm:text-lg overflow-hidden"
+                className="relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-2.5 sm:py-3 md:py-4 px-4 sm:px-6 md:px-8 rounded-lg sm:rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 inline-flex items-center justify-center group text-sm sm:text-base md:text-lg overflow-hidden"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
@@ -215,7 +215,7 @@ const Hero: React.FC = () => {
                   backgroundColor: "rgba(255, 255, 255, 0.2)"
                 }}
                 whileTap={{ scale: 0.95 }}
-                className="relative bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/30 text-white font-semibold py-3 sm:py-4 px-6 sm:px-8 rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 inline-flex items-center justify-center text-base sm:text-lg overflow-hidden group"
+                className="relative bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/30 text-white font-semibold py-2.5 sm:py-3 md:py-4 px-4 sm:px-6 md:px-8 rounded-lg sm:rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 inline-flex items-center justify-center text-sm sm:text-base md:text-lg overflow-hidden group"
               >
                 <motion.div
                   className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
@@ -234,22 +234,22 @@ const Hero: React.FC = () => {
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-3 gap-8 pt-8 border-t border-gray-200/50"
+              className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 pt-6 sm:pt-8 border-t border-gray-200/50"
             >
               {[
-                { number: "50+", label: "Tamamlanan Proje" },
-                { number: "100%", label: "Müşteri Memnuniyeti" },
-                { number: "24/7", label: "Destek Hizmeti" }
+                { number: "50+", label: "Completed Projects" },
+                { number: "100%", label: "Customer Satisfaction" },
+                { number: "24/7", label: "Support Service" }
               ].map((stat, index) => (
                 <motion.div
                   key={index}
                   initial={{ opacity: 0, scale: 0.8 }}
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
-                  className="text-center"
+                  className="text-center px-1"
                 >
-                  <div className="text-3xl font-bold gradient-text">{stat.number}</div>
-                  <div className="text-sm text-gray-600 mt-1">{stat.label}</div>
+                  <div className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text">{stat.number}</div>
+                  <div className="text-xs sm:text-sm text-gray-600 mt-1 leading-tight">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -287,17 +287,17 @@ const Hero: React.FC = () => {
               className="relative perspective-1000 preserve-3d mt-8 lg:mt-0"
             >
                     {/* Main Card */}
-                    <div className="bg-white/10 backdrop-blur-xl p-4 sm:p-6 lg:p-8 rounded-3xl shadow-2xl border border-white/20">
-                <div className="space-y-6">
-                  <div className="flex items-center space-x-4">
+                    <div className="bg-white/10 backdrop-blur-xl p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20">
+                <div className="space-y-4 sm:space-y-6">
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start space-y-3 sm:space-y-0 sm:space-x-4">
                         <img
                           src="/logo.svg"
                           alt="BGDev Logo"
-                          className="w-48 h-20 object-contain"
+                          className="w-32 h-14 sm:w-40 sm:h-18 md:w-48 md:h-20 lg:w-56 lg:h-24 object-contain"
                         />
-                    <div>
-                      <h3 className="text-xl font-bold text-white">BGDev Studio</h3>
-                      <p className="text-gray-300">AI-Powered Mobile & Web Solutions</p>
+                    <div className="space-y-1 sm:space-y-2 text-center sm:text-left">
+                      <h3 className="text-lg sm:text-xl font-bold text-white">BGDev Studio</h3>
+                      <p className="text-sm sm:text-base text-gray-300 mt-2 sm:mt-5">AI-Powered Mobile & Web Solutions</p>
                     </div>
                   </div>
                   
@@ -314,11 +314,11 @@ const Hero: React.FC = () => {
                         animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 0.8 + index * 0.1 }}
                         whileHover={{ scale: 1.05, y: -2 }}
-                            className="p-3 sm:p-4 bg-white/5 rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
+                            className="p-2 sm:p-3 md:p-4 bg-white/5 rounded-lg sm:rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
                       >
-                        <div className="text-2xl mb-2">{feature.icon}</div>
-                        <div className="font-semibold text-white">{feature.title}</div>
-                        <div className="text-sm text-gray-300">{feature.desc}</div>
+                        <div className="text-xl sm:text-2xl mb-1 sm:mb-2">{feature.icon}</div>
+                        <div className="text-sm sm:text-base font-semibold text-white">{feature.title}</div>
+                        <div className="text-xs sm:text-sm text-gray-300">{feature.desc}</div>
                       </motion.div>
                     ))}
                   </div>
@@ -327,13 +327,13 @@ const Hero: React.FC = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 1.2 }}
-                          className="pt-4 border-t border-white/10"
+                          className="pt-3 sm:pt-4 border-t border-white/10"
                   >
                     <div className="flex items-center justify-between">
-                      <span className="text-sm text-gray-600">Proje Durumu</span>
+                      <span className="text-xs sm:text-sm text-gray-600">Project Status</span>
                       <div className="flex items-center space-x-2">
                         <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-sm font-medium text-green-600">Aktif</span>
+                        <span className="text-xs sm:text-sm font-medium text-green-600">Active</span>
                       </div>
                     </div>
                   </motion.div>

@@ -85,9 +85,8 @@ const Footer: React.FC = () => {
                       <img
                         src="/logo.svg"
                         alt="BGDev Logo"
-                        className="w-36 h-14 object-contain"
+                        className="w-40 h-16 object-contain"
                       />
-                <span className="text-2xl font-bold">BGDev</span>
               </div>
               
               <p className="text-gray-400 mb-6 leading-relaxed">
@@ -253,15 +252,15 @@ const Footer: React.FC = () => {
             </motion.p>
             
             <motion.div variants={itemVariants} className="flex items-center space-x-6 text-sm">
-              <button className="text-gray-400 hover:text-primary-400 transition-colors">
+              <a href="/privacy-policy" className="text-gray-400 hover:text-primary-400 transition-colors">
                 Privacy Policy
-              </button>
-              <button className="text-gray-400 hover:text-primary-400 transition-colors">
+              </a>
+              <a href="/terms-of-service" className="text-gray-400 hover:text-primary-400 transition-colors">
                 Terms of Service
-              </button>
-              <button className="text-gray-400 hover:text-primary-400 transition-colors">
+              </a>
+              <a href="/cookie-policy" className="text-gray-400 hover:text-primary-400 transition-colors">
                 Cookie Policy
-              </button>
+              </a>
             </motion.div>
           </div>
           

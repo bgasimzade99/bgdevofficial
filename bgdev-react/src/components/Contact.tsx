@@ -34,8 +34,27 @@ const Contact: React.FC = () => {
     e.preventDefault();
     setIsSubmitting(true);
     
-    // Simulate form submission
-    setTimeout(() => {
+    try {
+      // Create mailto link with form data
+      const subject = encodeURIComponent(`New Project Quote Request from ${formData.name}`);
+      const body = encodeURIComponent(`
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone || 'Not provided'}
+Service: ${formData.service || 'Not specified'}
+
+Project Details:
+${formData.message}
+
+---
+This message was sent from BGDev website contact form.
+      `);
+      
+      const mailtoLink = `mailto:bgdevofficial@gmail.com?subject=${subject}&body=${body}`;
+      
+      // Open default email client
+      window.open(mailtoLink);
+      
       setIsSubmitting(false);
       setIsSubmitted(true);
       setFormData({
@@ -50,7 +69,11 @@ const Contact: React.FC = () => {
       setTimeout(() => {
         setIsSubmitted(false);
       }, 5000);
-    }, 2000);
+      
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setIsSubmitting(false);
+    }
   };
 
   const contactInfo = [
@@ -125,7 +148,7 @@ const Contact: React.FC = () => {
           
           <motion.h2
             variants={itemVariants}
-            className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 px-4 sm:px-0"
           >
             Let's Discuss
             <br />
@@ -134,14 +157,14 @@ const Contact: React.FC = () => {
           
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
           >
             Get in touch with us to bring your dream project to life. 
             We offer free consultation and detailed proposals.
           </motion.p>
         </motion.div>
 
-        <div className="grid lg:grid-cols-2 gap-16">
+        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
           {/* Contact Info */}
           <motion.div
             variants={containerVariants}
@@ -151,7 +174,7 @@ const Contact: React.FC = () => {
           >
             <motion.div
               variants={itemVariants}
-              className="glass-card p-8 rounded-3xl h-full"
+              className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl h-full"
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Contact Information
@@ -238,7 +261,7 @@ const Contact: React.FC = () => {
           >
             <motion.div
               variants={itemVariants}
-              className="glass-card p-8 rounded-3xl"
+              className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl"
             >
               <h3 className="text-2xl font-bold text-gray-900 mb-8">
                 Get Project Quote
@@ -262,7 +285,7 @@ const Contact: React.FC = () => {
                     Thank You!
                   </h4>
                   <p className="text-gray-600">
-                    Your message has been sent successfully. We will get back to you as soon as possible.
+                    Your email client has been opened with your message. Please send the email to complete your quote request.
                   </p>
                 </motion.div>
               ) : (

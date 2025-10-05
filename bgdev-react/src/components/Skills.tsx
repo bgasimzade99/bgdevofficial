@@ -122,7 +122,7 @@ const Skills: React.FC = () => {
           
           <motion.h2
             variants={itemVariants}
-            className="text-4xl lg:text-6xl font-bold text-gray-900 mb-6"
+            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 px-4 sm:px-0"
           >
             Technology
             <br />
@@ -131,7 +131,7 @@ const Skills: React.FC = () => {
           
           <motion.p
             variants={itemVariants}
-            className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed"
+            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
           >
             We are experts in React Native, Firebase, and AI integrations. 
             We develop innovative solutions with modern technologies.
@@ -143,7 +143,7 @@ const Skills: React.FC = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+          className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8"
         >
           {skillCategories.map((category, index) => (
             <motion.div
@@ -155,7 +155,7 @@ const Skills: React.FC = () => {
               }}
               className="group relative"
             >
-              <div className="glass-card p-8 rounded-3xl h-full hover:shadow-2xl transition-all duration-500 border border-white/30 hover:border-white/50">
+              <div className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl h-full hover:shadow-2xl transition-all duration-500 border border-white/30 hover:border-white/50">
                 {/* Icon */}
                 <motion.div
                   initial={{ scale: 0 }}
@@ -223,7 +223,7 @@ const Skills: React.FC = () => {
             variants={itemVariants}
             className="glass-card p-12 rounded-3xl max-w-6xl mx-auto"
           >
-            <div className="grid md:grid-cols-4 gap-8">
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-6 md:gap-8">
               {[
                 { icon: Smartphone, value: "3+", label: "Mobile Projects", color: "from-blue-500 to-cyan-500" },
                 { icon: Brain, value: "AI", label: "Powered Solutions", color: "from-purple-500 to-pink-500" },
