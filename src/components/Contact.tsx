@@ -57,20 +57,20 @@ const Contact: React.FC = () => {
     {
       icon: Mail,
       title: "Email",
-      info: "info@bgdev.com",
+      info: "bgdevofficial@gmail.com",
       description: "24/7 email support"
     },
     {
       icon: Phone,
       title: "Phone",
-      info: "+90 (555) 123 45 67",
+      info: "+994 55 451 19 99",
       description: "Weekdays 09:00 - 18:00"
     },
     {
       icon: MapPin,
-      title: "Address",
-      info: "Istanbul, Turkey",
-      description: "Remote work available"
+      title: "Location",
+      info: "Riga, Latvia",
+      description: "Remote Office"
     }
   ];
 
@@ -210,9 +210,9 @@ const Contact: React.FC = () => {
                 <h4 className="font-semibold text-gray-900 mb-4">Social Media</h4>
                 <div className="flex space-x-4">
                   {[
-                    { icon: Globe, label: "Website", url: "#" },
-                    { icon: Mail, label: "LinkedIn", url: "#" },
-                    { icon: MessageSquare, label: "Twitter", url: "#" }
+                    { icon: Globe, label: "Instagram", url: "https://www.instagram.com/bgdevofficial" },
+                    { icon: Mail, label: "LinkedIn", url: "https://www.linkedin.com/company/bgdev" },
+                    { icon: MessageSquare, label: "Website", url: "#" }
                   ].map((social, index) => (
                     <motion.a
                       key={index}

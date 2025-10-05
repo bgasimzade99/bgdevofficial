@@ -38,12 +38,12 @@ const Footer: React.FC = () => {
     ]
   };
 
-  const socialLinks = [
-    { icon: Github, href: '#', label: 'GitHub' },
-    { icon: Linkedin, href: '#', label: 'LinkedIn' },
-    { icon: Twitter, href: '#', label: 'Twitter' },
-    { icon: Instagram, href: '#', label: 'Instagram' }
-  ];
+         const socialLinks = [
+           { icon: Github, href: 'https://github.com/bgasimzade99', label: 'GitHub' },
+           { icon: Linkedin, href: 'https://www.linkedin.com/company/bgdev', label: 'LinkedIn' },
+           { icon: Twitter, href: 'https://www.instagram.com/bgdevofficial', label: 'Instagram' },
+           { icon: Instagram, href: 'https://www.instagram.com/bgdevofficial', label: 'Instagram' }
+         ];
 
   const containerVariants = {
     hidden: { opacity: 0 },
@@ -96,20 +96,20 @@ const Footer: React.FC = () => {
               </p>
 
               {/* Contact Info */}
-              <div className="space-y-3">
-                <div className="flex items-center space-x-3">
-                  <Mail className="w-4 h-4 text-primary-400" />
-                  <span className="text-gray-400 text-sm">info@bgdev.com</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <Phone className="w-4 h-4 text-primary-400" />
-                  <span className="text-gray-400 text-sm">+90 (555) 123 45 67</span>
-                </div>
-                <div className="flex items-center space-x-3">
-                  <MapPin className="w-4 h-4 text-primary-400" />
-                  <span className="text-gray-400 text-sm">Istanbul, Turkey</span>
-                </div>
-              </div>
+                     <div className="space-y-3">
+                       <div className="flex items-center space-x-3">
+                         <Mail className="w-4 h-4 text-primary-400" />
+                         <span className="text-gray-400 text-sm">bgdevofficial@gmail.com</span>
+                       </div>
+                       <div className="flex items-center space-x-3">
+                         <Phone className="w-4 h-4 text-primary-400" />
+                         <span className="text-gray-400 text-sm">+994 55 451 19 99</span>
+                       </div>
+                       <div className="flex items-center space-x-3">
+                         <MapPin className="w-4 h-4 text-primary-400" />
+                         <span className="text-gray-400 text-sm">Riga, Latvia</span>
+                       </div>
+                     </div>
             </motion.div>
 
             {/* Company Links */}
