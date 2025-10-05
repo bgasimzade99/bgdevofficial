@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
@@ -26,9 +26,29 @@ function HomePage() {
   );
 }
 
+// GitHub Pages routing fix component
+function GitHubPagesRedirect() {
+  const location = useLocation();
+  
+  useEffect(() => {
+    // Check if we're on GitHub Pages and have a redirect query parameter
+    const queryParams = new URLSearchParams(location.search);
+    const redirectPath = queryParams.get('/');
+    
+    if (redirectPath) {
+      // Clean up the path and navigate
+      const cleanPath = redirectPath.replace(/~and~/g, '&');
+      window.history.replaceState(null, '', cleanPath);
+    }
+  }, [location]);
+  
+  return null;
+}
+
 function App() {
   return (
     <Router>
+      <GitHubPagesRedirect />
       <div className="App">
         <Header />
         <Routes>
