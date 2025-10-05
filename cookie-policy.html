@@ -7,15 +7,17 @@
     <meta name="description" content="BGDev - Cookie Policy"/>
     <title>BGDev - Cookie Policy</title>
     <link rel="icon" href="/logo.png"/>
-    <script defer="defer" src="/static/js/main.679efada.js"></script>
+    <script defer="defer" src="/static/js/main.fd203683.js"></script>
     <link href="/static/css/main.0144779f.css" rel="stylesheet">
 </head>
 <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <script>
-        // Force navigate to cookie policy
-        window.location.href = '/?redirect=/cookie-policy';
+        // Navigate to cookie policy page
+        if (window.location.pathname !== '/cookie-policy') {
+            window.location.replace('/cookie-policy');
+        }
     </script>
 </body>
 </html>

@@ -36,9 +36,10 @@ function GitHubPagesRedirect() {
     const redirectPath = queryParams.get('redirect');
     
     if (redirectPath) {
-      // Navigate to the redirect path
+      // Navigate to the redirect path without reload
       window.history.replaceState(null, '', redirectPath);
-      window.location.reload();
+      // Don't reload, just let React Router handle it
+      return;
     }
     
     // Check if we're on GitHub Pages and have a redirect query parameter
@@ -48,7 +49,8 @@ function GitHubPagesRedirect() {
       // Clean up the path and navigate
       const cleanPath = githubRedirectPath.replace(/~and~/g, '&');
       window.history.replaceState(null, '', cleanPath);
-      window.location.href = cleanPath;
+      // Don't reload, just let React Router handle it
+      return;
     }
   }, [location]);
   
