@@ -1,0 +1,4 @@
+/* App.css - Minimal styles since we're using Tailwind */
+.App {
+  @apply min-h-screen;
+}
