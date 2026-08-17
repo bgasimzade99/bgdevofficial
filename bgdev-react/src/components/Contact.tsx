@@ -1,15 +1,15 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { 
-  Mail, 
-  Phone, 
-  MapPin, 
-  Send, 
-  CheckCircle, 
-  User, 
-  MessageSquare,
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Send,
+  CheckCircle,
+  User,
   Clock,
-  Globe
+  Instagram,
+  Linkedin,
 } from 'lucide-react';
 
 const Contact: React.FC = () => {
@@ -18,7 +18,7 @@ const Contact: React.FC = () => {
     email: '',
     phone: '',
     service: '',
-    message: ''
+    message: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -26,18 +26,17 @@ const Contact: React.FC = () => {
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    
+
     try {
-      // API endpoint - adjust URL based on your deployment
       const API_URL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
-      
+
       const response = await fetch(`${API_URL}/api/contact`, {
         method: 'POST',
         headers: {
@@ -52,357 +51,241 @@ const Contact: React.FC = () => {
         throw new Error(data.message || 'Failed to send message');
       }
 
-      // Success
       setIsSubmitting(false);
       setIsSubmitted(true);
-      setFormData({
-        name: '',
-        email: '',
-        phone: '',
-        service: '',
-        message: ''
-      });
-      
-      // Reset success message after 8 seconds (form stays visible)
+      setFormData({ name: '', email: '', phone: '', service: '', message: '' });
+
       setTimeout(() => {
         setIsSubmitted(false);
       }, 8000);
-      
     } catch (error: any) {
       console.error('Error sending email:', error);
       setIsSubmitting(false);
-      // Show error message to user
       alert(error.message || 'Failed to send message. Please try again or contact us directly at bgdevofficial@gmail.com');
     }
   };
 
   const contactInfo = [
-    {
-      icon: Mail,
-      title: "Email",
-      info: "bgdevofficial@gmail.com",
-      description: "24/7 email support"
-    },
-    {
-      icon: Phone,
-      title: "Phone",
-      info: "+994 55 451 19 99",
-      description: "Weekdays 09:00 - 18:00"
-    },
-    {
-      icon: MapPin,
-      title: "Location",
-      info: "Riga, Latvia",
-      description: "Remote Office"
-    }
+    { icon: Mail, title: 'Email', info: 'bgdevofficial@gmail.com', description: '24/7 email support' },
+    { icon: Phone, title: 'Phone', info: '+994 55 451 19 99', description: 'Weekdays 09:00 – 18:00' },
+    { icon: MapPin, title: 'Location', info: 'Riga, Latvia', description: 'Remote office' },
   ];
 
   const services = [
-    "Web Development",
-    "Mobile Applications",
-    "E-Commerce",
-    "SEO & Digital Marketing",
-    "Security & Maintenance",
-    "Performance Optimization"
+    'Web Development',
+    'Mobile Applications',
+    'AI Integration',
+    'SEO & Digital Marketing',
+    'Security & Maintenance',
+    'Performance Optimization',
   ];
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: {
-      opacity: 1,
-      y: 0
-    }
-  };
-
   return (
-    <section id="contact" className="section-padding bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-100 relative overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-96 h-96 bg-gradient-to-br from-primary-200/30 to-purple-200/30 rounded-full blur-3xl"></div>
-      <div className="absolute bottom-0 right-0 w-80 h-80 bg-gradient-to-tl from-blue-200/30 to-indigo-200/30 rounded-full blur-3xl"></div>
-      
-      <div className="container-custom relative z-10">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-100px" }}
-          className="text-center mb-16"
-        >
-          <motion.div
-            variants={itemVariants}
-            className="inline-flex items-center px-4 py-2 bg-white/20 backdrop-blur-sm border border-white/30 rounded-full text-sm font-medium text-gray-700 mb-6"
-          >
-            <MessageSquare className="w-4 h-4 mr-2 text-primary-500" />
-            Contact
-          </motion.div>
-          
-          <motion.h2
-            variants={itemVariants}
-            className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 mb-6 px-4 sm:px-0"
-          >
-            Let's Discuss
-            <br />
-            <span className="gradient-text">Your Project</span>
-          </motion.h2>
-          
-          <motion.p
-            variants={itemVariants}
-            className="text-base sm:text-lg md:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4 sm:px-0"
-          >
-            Get in touch with us to bring your dream project to life. 
-            We offer free consultation and detailed proposals.
-          </motion.p>
-        </motion.div>
+    <section id="contact" className="section-padding bg-ink-950 border-t border-white/10">
+      <div className="container-custom">
+        <div className="max-w-2xl mb-16">
+          <p className="label text-brand-300/80 mb-4">Contact</p>
+          <h2 className="font-display text-3xl sm:text-4xl lg:text-5xl font-semibold text-white mb-6 text-balance">
+            Let's talk about <span className="text-gradient-brand">your project.</span>
+          </h2>
+          <p className="text-lg text-neutral-400 leading-relaxed">
+            Get in touch and we'll come back with a clear scope, a straight answer,
+            and a free consultation.
+          </p>
+        </div>
 
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-12 md:gap-16">
-          {/* Contact Info */}
+        <div className="grid lg:grid-cols-2 gap-6">
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="panel p-6 sm:p-8"
           >
-            <motion.div
-              variants={itemVariants}
-              className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl h-full"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                Contact Information
-              </h3>
-              
-              <div className="space-y-6">
-                {contactInfo.map((info, index) => (
-                  <motion.div
-                    key={index}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02, x: 5 }}
-                    className="flex items-start space-x-4 p-4 bg-white/50 rounded-xl border border-white/30 hover:bg-white/70 transition-all duration-300"
+            <h3 className="text-lg font-semibold text-white mb-8">Contact information</h3>
+
+            <div className="space-y-4">
+              {contactInfo.map((info) => (
+                <div
+                  key={info.title}
+                  className="flex items-start gap-4 p-4 border border-white/10 rounded-xl hover:border-brand-300/30 transition-colors duration-200"
+                >
+                  <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-brand-gradient flex items-center justify-center">
+                    <info.icon className="w-4 h-4 text-white" />
+                  </div>
+                  <div>
+                    <h4 className="font-medium text-white text-sm mb-0.5">{info.title}</h4>
+                    <p className="text-neutral-300 text-sm mb-0.5">{info.info}</p>
+                    <p className="text-xs text-neutral-500">{info.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-6 p-5 border border-white/10 rounded-xl">
+              <div className="flex items-center gap-3 mb-4">
+                <Clock className="w-4 h-4 text-neutral-400" />
+                <h4 className="font-medium text-white text-sm">Working hours</h4>
+              </div>
+              <div className="space-y-2 text-sm text-neutral-400">
+                <div className="flex justify-between">
+                  <span>Monday – Friday</span>
+                  <span className="text-neutral-300">09:00 – 18:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Saturday</span>
+                  <span className="text-neutral-300">10:00 – 16:00</span>
+                </div>
+                <div className="flex justify-between">
+                  <span>Sunday</span>
+                  <span className="text-neutral-600">Closed</span>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <h4 className="font-medium text-white text-sm mb-4">Social</h4>
+              <div className="flex gap-3">
+                {[
+                  { icon: Instagram, label: 'Instagram', url: 'https://www.instagram.com/bgdevofficial' },
+                  { icon: Linkedin, label: 'LinkedIn', url: 'https://www.linkedin.com/company/bgdev' },
+                ].map((social) => (
+                  <a
+                    key={social.label}
+                    href={social.url}
+                    target="_blank"
+                    rel="noreferrer"
+                    aria-label={social.label}
+                    className="w-10 h-10 border border-white/10 hover:border-white/25 rounded-lg flex items-center justify-center transition-colors duration-200"
                   >
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-r from-primary-500 to-purple-600 rounded-xl flex items-center justify-center">
-                      <info.icon className="w-6 h-6 text-white" />
-                    </div>
-                    <div>
-                      <h4 className="font-semibold text-gray-900 mb-1">{info.title}</h4>
-                      <p className="text-primary-600 font-medium mb-1">{info.info}</p>
-                      <p className="text-sm text-gray-600">{info.description}</p>
-                    </div>
-                  </motion.div>
+                    <social.icon className="w-4 h-4 text-neutral-400" />
+                  </a>
                 ))}
               </div>
-
-              {/* Working Hours */}
-              <motion.div
-                variants={itemVariants}
-                className="mt-8 p-6 bg-gradient-to-r from-primary-50 to-purple-50 rounded-2xl border border-primary-200"
-              >
-                <div className="flex items-center space-x-3 mb-4">
-                  <Clock className="w-6 h-6 text-primary-600" />
-                  <h4 className="font-semibold text-gray-900">Working Hours</h4>
-                </div>
-                <div className="space-y-2 text-sm text-gray-600">
-                  <div className="flex justify-between">
-                    <span>Monday - Friday</span>
-                    <span className="font-medium">09:00 - 18:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Saturday</span>
-                    <span className="font-medium">10:00 - 16:00</span>
-                  </div>
-                  <div className="flex justify-between">
-                    <span>Sunday</span>
-                    <span className="font-medium text-gray-400">Closed</span>
-                  </div>
-                </div>
-              </motion.div>
-
-              {/* Social Links */}
-              <motion.div
-                variants={itemVariants}
-                className="mt-8"
-              >
-                <h4 className="font-semibold text-gray-900 mb-4">Social Media</h4>
-                <div className="flex space-x-4">
-                  {[
-                    { icon: Globe, label: "Instagram", url: "https://www.instagram.com/bgdevofficial" },
-                    { icon: Mail, label: "LinkedIn", url: "https://www.linkedin.com/company/bgdev" },
-                    { icon: MessageSquare, label: "Website", url: "#" }
-                  ].map((social, index) => (
-                    <motion.a
-                      key={index}
-                      href={social.url}
-                      whileHover={{ scale: 1.1, y: -2 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="w-12 h-12 bg-white/50 backdrop-blur-sm border border-white/30 rounded-xl flex items-center justify-center hover:bg-white/70 transition-all duration-300 group"
-                    >
-                      <social.icon className="w-5 h-5 text-gray-600 group-hover:text-primary-600 transition-colors" />
-                    </motion.a>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
+            </div>
           </motion.div>
 
-          {/* Contact Form */}
           <motion.div
-            variants={containerVariants}
-            initial="hidden"
-            whileInView="visible"
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
+            transition={{ duration: 0.5, delay: 0.1 }}
+            className="panel p-6 sm:p-8"
           >
-            <motion.div
-              variants={itemVariants}
-              className="glass-card p-4 sm:p-6 md:p-8 rounded-2xl sm:rounded-3xl"
-            >
-              <h3 className="text-2xl font-bold text-gray-900 mb-8">
-                Get Project Quote
-              </h3>
-              
-              {/* Success Message */}
-              {isSubmitted && (
-                <motion.div
-                  initial={{ opacity: 0, y: -20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -20 }}
-                  className="mb-6 p-4 bg-green-50 border border-green-200 rounded-xl"
-                >
-                  <div className="flex items-center space-x-3">
-                    <CheckCircle className="w-5 h-5 text-green-600 flex-shrink-0" />
-                    <div>
-                      <h4 className="text-sm font-semibold text-green-900 mb-1">
-                        Message Sent Successfully!
-                      </h4>
-                      <p className="text-sm text-green-700">
-                        Your message has been sent. We will get back to you soon.
-                      </p>
-                    </div>
+            <h3 className="text-lg font-semibold text-white mb-8">Get a project quote</h3>
+
+            {isSubmitted && (
+              <div className="mb-6 p-4 border border-emerald-500/20 bg-emerald-500/[0.06] rounded-xl">
+                <div className="flex items-center gap-3">
+                  <CheckCircle className="w-5 h-5 text-emerald-400 flex-shrink-0" />
+                  <div>
+                    <h4 className="text-sm font-semibold text-white mb-0.5">Message sent</h4>
+                    <p className="text-sm text-neutral-400">We'll get back to you soon.</p>
                   </div>
-                </motion.div>
-              )}
-              
-              <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <motion.div variants={itemVariants}>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Full Name *
-                      </label>
-                      <div className="relative">
-                        <User className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                        <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                          placeholder="Your full name"
-                        />
-                      </div>
-                    </motion.div>
+                </div>
+              </div>
+            )}
 
-                    <motion.div variants={itemVariants}>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Email *
-                      </label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                          placeholder="example@email.com"
-                        />
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  <div className="grid md:grid-cols-2 gap-6">
-                    <motion.div variants={itemVariants}>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Phone
-                      </label>
-                      <div className="relative">
-                        <Phone className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          className="w-full pl-10 pr-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                          placeholder="+90 (555) 123 45 67"
-                        />
-                      </div>
-                    </motion.div>
-
-                    <motion.div variants={itemVariants}>
-                      <label className="block text-sm font-medium text-gray-700 mb-2">
-                        Service Type
-                      </label>
-                      <select
-                        name="service"
-                        value={formData.service}
-                        onChange={handleInputChange}
-                        className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm"
-                      >
-                        <option value="">Select service</option>
-                        {services.map((service, index) => (
-                          <option key={index} value={service}>
-                            {service}
-                          </option>
-                        ))}
-                      </select>
-                    </motion.div>
-                  </div>
-
-                  <motion.div variants={itemVariants}>
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
-                      Project Details *
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
+            <form onSubmit={handleSubmit} className="space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs font-medium text-neutral-400 mb-2">Full name *</label>
+                  <div className="relative">
+                    <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600" />
+                    <input
+                      type="text"
+                      name="name"
+                      value={formData.name}
                       onChange={handleInputChange}
                       required
-                      rows={5}
-                      className="w-full px-4 py-3 border border-gray-200 rounded-xl focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-300 bg-white/50 backdrop-blur-sm resize-none"
-                      placeholder="Please provide detailed information about your project..."
+                      className="w-full pl-10 pr-4 py-3 border border-white/10 rounded-lg bg-white/[0.02] text-white placeholder-neutral-600 text-sm focus:outline-none focus:border-brand-300/50 transition-colors duration-200"
+                      placeholder="Your full name"
                     />
-                  </motion.div>
+                  </div>
+                </div>
 
-                  <motion.button
-                    type="submit"
-                    disabled={isSubmitting}
-                    variants={itemVariants}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
-                    className="w-full bg-gradient-to-r from-primary-500 to-purple-600 hover:from-primary-600 hover:to-purple-700 text-white font-semibold py-4 px-6 rounded-xl transition-all duration-300 flex items-center justify-center space-x-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                <div>
+                  <label className="block text-xs font-medium text-neutral-400 mb-2">Email *</label>
+                  <div className="relative">
+                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600" />
+                    <input
+                      type="email"
+                      name="email"
+                      value={formData.email}
+                      onChange={handleInputChange}
+                      required
+                      className="w-full pl-10 pr-4 py-3 border border-white/10 rounded-lg bg-white/[0.02] text-white placeholder-neutral-600 text-sm focus:outline-none focus:border-brand-300/50 transition-colors duration-200"
+                      placeholder="you@example.com"
+                    />
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-5">
+                <div>
+                  <label className="block text-xs font-medium text-neutral-400 mb-2">Phone</label>
+                  <div className="relative">
+                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-600" />
+                    <input
+                      type="tel"
+                      name="phone"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="w-full pl-10 pr-4 py-3 border border-white/10 rounded-lg bg-white/[0.02] text-white placeholder-neutral-600 text-sm focus:outline-none focus:border-brand-300/50 transition-colors duration-200"
+                      placeholder="+1 555 123 4567"
+                    />
+                  </div>
+                </div>
+
+                <div>
+                  <label className="block text-xs font-medium text-neutral-400 mb-2">Service type</label>
+                  <select
+                    name="service"
+                    value={formData.service}
+                    onChange={handleInputChange}
+                    className="w-full px-4 py-3 border border-white/10 rounded-lg bg-white/[0.02] text-white text-sm focus:outline-none focus:border-brand-300/50 transition-colors duration-200"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
-                        <span>Sending...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5" />
-                        <span>Get Quote</span>
-                      </>
-                    )}
-                  </motion.button>
-                </form>
-            </motion.div>
+                    <option value="" className="bg-ink-900">Select a service</option>
+                    {services.map((service) => (
+                      <option key={service} value={service} className="bg-ink-900">
+                        {service}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-medium text-neutral-400 mb-2">Project details *</label>
+                <textarea
+                  name="message"
+                  value={formData.message}
+                  onChange={handleInputChange}
+                  required
+                  rows={5}
+                  className="w-full px-4 py-3 border border-white/10 rounded-lg bg-white/[0.02] text-white placeholder-neutral-600 text-sm focus:outline-none focus:border-brand-300/50 transition-colors duration-200 resize-none"
+                  placeholder="Tell us about your project..."
+                />
+              </div>
+
+              <button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-brand-gradient text-white font-semibold py-3.5 px-6 rounded-lg transition-transform hover:scale-[1.01] active:scale-[0.99] flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? (
+                  <>
+                    <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span>Sending...</span>
+                  </>
+                ) : (
+                  <>
+                    <Send className="w-4 h-4" />
+                    <span>Get a quote</span>
+                  </>
+                )}
+              </button>
+            </form>
           </motion.div>
         </div>
       </div>

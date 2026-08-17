@@ -1,398 +1,202 @@
-import React from 'react';
-import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Zap, Rocket } from 'lucide-react';
-import BrandLogo from './BrandLogo';
+import React, { useEffect, useRef, useState } from 'react';
+import { motion, useInView } from 'framer-motion';
+import { ArrowRight, BadgeCheck } from 'lucide-react';
 
-const Hero: React.FC = () => {
-  const floatingIcons = [
-    { Icon: Sparkles, delay: 0, x: 20, y: 20 },
-    { Icon: Zap, delay: 0.5, x: -30, y: 40 },
-    { Icon: Rocket, delay: 1, x: 40, y: -20 },
-  ];
+const HERO_BG = 'https://images.unsplash.com/photo-1519389950473-47ba0277781c?q=80&w=1800&auto=format&fit=crop';
+const HERO_SIDE_IMG = 'https://images.unsplash.com/photo-1498050108023-c5249f4df085?q=80&w=1200&auto=format&fit=crop';
+
+interface CounterProps {
+  target: number;
+  suffix?: string;
+  prefix?: string;
+}
+
+const Counter: React.FC<CounterProps> = ({ target, suffix = '', prefix = '' }) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: '-40px' });
+  const [value, setValue] = useState(0);
+
+  useEffect(() => {
+    if (!inView) return;
+    let frame: number;
+    const start = performance.now();
+    const duration = 1200;
+    const tick = (now: number) => {
+      const progress = Math.min((now - start) / duration, 1);
+      const eased = 1 - Math.pow(1 - progress, 3);
+      setValue(Math.round(eased * target));
+      if (progress < 1) frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [inView, target]);
 
   return (
-          <section id="home" className="relative min-h-screen flex items-center justify-center overflow-hidden bg-gray-900">
-            {/* Video Background */}
-            <div className="absolute inset-0 z-0 overflow-hidden">
-              {/* Animated Geometric Shapes */}
-              <div className="absolute inset-0">
-                <motion.div
-                  animate={{
-                    rotate: [0, 360],
-                    scale: [1, 1.1, 1],
-                    opacity: [0.1, 0.3, 0.1]
-                  }}
-                  transition={{
-                    duration: 20,
-                    repeat: Infinity,
-                    ease: "linear"
-                  }}
-                  className="absolute top-20 left-20 w-32 h-32 border-2 border-blue-400/20 rounded-full"
-                />
-                <motion.div
-                  animate={{
-                    rotate: [360, 0],
-                    scale: [1, 1.2, 1],
-                    opacity: [0.1, 0.2, 0.1]
-                  }}
-                  transition={{
-                    duration: 25,
-                    repeat: Infinity,
-                    ease: "linear",
-                    delay: 2
-                  }}
-                  className="absolute top-40 right-32 w-24 h-24 border-2 border-purple-400/20 rounded-lg rotate-45"
-                />
-                <motion.div
-                  animate={{
-                    y: [-50, 50, -50],
-                    x: [-20, 20, -20],
-                    rotate: [0, 180, 360]
-                  }}
-                  transition={{
-                    duration: 15,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                    delay: 4
-                  }}
-                  className="absolute bottom-32 left-1/4 w-16 h-16 bg-gradient-to-r from-blue-400/10 to-purple-400/10 rounded-full"
-                />
-              </div>
-              
-              {/* Gradient Overlay */}
-              <div className="absolute inset-0 bg-gradient-to-br from-blue-900/70 via-gray-900/80 to-indigo-900/70 z-10"></div>
-              
-              {/* Animated Background Pattern */}
-              <div className="absolute inset-0 opacity-30 z-5">
-                <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4xIj48Y2lyY2xlIGN4PSIzMCIgY3k9IjMwIiByPSIyIi8+PC9nPjwvZz48L3N2Zz4=')] animate-pulse"></div>
-              </div>
-              
-              {/* Floating Particles */}
-              {[...Array(20)].map((_, i) => (
-                <motion.div
-                  key={i}
-                  animate={{
-                    y: [0, -100, 0],
-                    x: [0, Math.random() * 100 - 50, 0],
-                    opacity: [0, 1, 0],
-                    scale: [0, 1, 0]
-                  }}
-                  transition={{
-                    duration: 8 + Math.random() * 4,
-                    repeat: Infinity,
-                    delay: Math.random() * 5,
-                    ease: "easeInOut"
-                  }}
-                  className="absolute w-2 h-2 bg-white/20 rounded-full"
-                  style={{
-                    left: `${Math.random() * 100}%`,
-                    top: `${Math.random() * 100}%`
-                  }}
-                />
-              ))}
-            </div>
-      
-      {/* Floating Icons */}
-      {floatingIcons.map(({ Icon, delay, x, y }, index) => (
-        <motion.div
-          key={index}
-          initial={{ opacity: 0, scale: 0 }}
-          animate={{ 
-            opacity: [0, 1, 0.7, 1],
-            scale: [0, 1, 1.1, 1],
-            x: [0, x, x * 0.8, x],
-            y: [0, y, y * 0.8, y]
-          }}
-          transition={{
-            duration: 4,
-            delay: delay,
-            repeat: Infinity,
-            repeatType: "reverse",
-            ease: "easeInOut"
-          }}
-          className="absolute top-1/4 left-1/4 text-blue-400/30"
-        >
-          <Icon className="w-8 h-8" />
-        </motion.div>
-      ))}
+    <span ref={ref}>
+      {prefix}
+      {value}
+      {suffix}
+    </span>
+  );
+};
+
+const Hero: React.FC = () => {
+  const techStack = ['React', 'TypeScript', 'React Native', 'AI / GPT-4', 'Firebase', 'AWS', 'Next.js', 'PostgreSQL'];
+  const marqueeItems = [...techStack, ...techStack];
+
+  return (
+    <section id="home" className="relative min-h-screen flex flex-col justify-center overflow-hidden bg-ink-950 pt-24">
+      <div
+        className="absolute inset-0 bg-cover bg-center opacity-[0.32]"
+        style={{ backgroundImage: `url(${HERO_BG})` }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-r from-ink-950 via-ink-950/90 to-ink-950/30" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ink-950/30 via-transparent to-ink-950" />
+      <div className="absolute inset-0 dot-grid-bg opacity-20" />
+
+      <motion.div
+        aria-hidden
+        className="absolute -top-24 -left-24 w-[420px] h-[420px] rounded-full bg-brand-400/20 blur-[110px] animate-blob-a"
+      />
+      <motion.div
+        aria-hidden
+        className="absolute top-1/3 -right-24 w-[380px] h-[380px] rounded-full bg-brand-700/25 blur-[110px] animate-blob-b"
+      />
 
       <div className="container-custom relative z-10">
-        <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-          {/* Left Content */}
+        <div className="grid lg:grid-cols-5 gap-12 lg:gap-16 items-stretch pb-8 lg:pb-4">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="space-y-6 sm:space-y-8"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-3"
           >
-            <motion.h1
-              initial={{ opacity: 0, y: 50 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 1, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold leading-tight tracking-tight"
-            >
-              <motion.span 
-                initial={{ opacity: 0, x: -50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.5, duration: 0.8 }}
-                className="text-white inline-block"
-              >
-                The best
-              </motion.span>
+            <div className="inline-flex items-center gap-2 text-xs text-brand-200 mb-6 px-3 py-1.5 rounded-full border border-brand-300/25 bg-brand-400/[0.08]">
+              <BadgeCheck className="w-3.5 h-3.5" />
+              Trusted web & mobile development agency
+            </div>
+
+            <h1 className="font-display text-4xl sm:text-5xl lg:text-6xl xl:text-[64px] leading-[1.08] font-semibold tracking-tight text-white text-balance">
+              Websites, apps, and AI tools
               <br />
-              <motion.span 
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: 0.7, duration: 0.8, type: "spring", stiffness: 100 }}
-                className="bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent inline-block"
-              >
-                digital experience
-              </motion.span>
-              <br />
-              <motion.span 
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: 0.9, duration: 0.8 }}
-                className="text-white inline-block"
-              >
-                partner
-              </motion.span>
-            </motion.h1>
+              <span className="text-gradient-brand">built to grow your business.</span>
+            </h1>
 
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-300 leading-relaxed max-w-2xl px-4 sm:px-0"
-            >
-              We build AI-powered mobile and web applications that drive business growth. 
-              From productivity platforms to career development tools, we create digital 
-              solutions that make an impact.
-            </motion.p>
+            <p className="mt-7 text-lg text-neutral-400 leading-relaxed max-w-lg">
+              BGDev is a trusted web and mobile app development agency for small and
+              growing businesses. We build custom websites, apps, and AI chatbot
+              integrations, plus AI-powered products like Convertonix. Real software,
+              engineered by our team, not resold AI templates.
+            </p>
 
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.5, duration: 0.6 }}
-              className="flex flex-col sm:flex-row gap-3 sm:gap-4 px-4 sm:px-0"
-            >
-              <motion.a
-                href="#contact"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.1, duration: 0.6 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
-                  boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="relative bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white font-semibold py-2.5 sm:py-3 md:py-4 px-4 sm:px-6 md:px-8 rounded-lg sm:rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-xl active:scale-95 inline-flex items-center justify-center group text-sm sm:text-base md:text-lg overflow-hidden"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-white/0 via-white/20 to-white/0"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.6 }}
-                />
-                <span className="relative z-10">Book a consultation</span>
-                <motion.div
-                  className="relative z-10 ml-2"
-                  whileHover={{ x: 5 }}
-                  transition={{ type: "spring", stiffness: 300 }}
-                >
-                  <ArrowRight className="w-5 h-5" />
-                </motion.div>
-              </motion.a>
-              
-              <motion.a
-                href="#projects"
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 1.3, duration: 0.6 }}
-                whileHover={{ 
-                  scale: 1.05, 
-                  y: -5,
-                  backgroundColor: "rgba(255, 255, 255, 0.2)"
-                }}
-                whileTap={{ scale: 0.95 }}
-                className="relative bg-white/10 backdrop-blur-sm border border-white/20 hover:bg-white/20 hover:border-white/30 text-white font-semibold py-2.5 sm:py-3 md:py-4 px-4 sm:px-6 md:px-8 rounded-lg sm:rounded-xl transition-all duration-300 transform hover:scale-105 hover:shadow-lg active:scale-95 inline-flex items-center justify-center text-sm sm:text-base md:text-lg overflow-hidden group"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent"
-                  initial={{ x: "-100%" }}
-                  whileHover={{ x: "100%" }}
-                  transition={{ duration: 0.8 }}
-                />
-                <span className="relative z-10 group-hover:text-blue-200 transition-colors">
-                  View our work
-                </span>
-              </motion.a>
-            </motion.div>
+            <div className="mt-9 flex flex-col sm:flex-row gap-4">
+              <a href="#projects" className="btn-primary group">
+                View selected work
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-0.5 transition-transform" />
+              </a>
+              <a href="#contact" className="btn-secondary">
+                Book a call
+              </a>
+            </div>
 
-            {/* Stats */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="grid grid-cols-3 gap-2 sm:gap-4 md:gap-6 lg:gap-8 pt-6 sm:pt-8 border-t border-gray-200/50"
-            >
-              {[
-                { number: "50+", label: "Completed Projects" },
-                { number: "100%", label: "Customer Satisfaction" },
-                { number: "24/7", label: "Support Service" }
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, scale: 0.8 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  transition={{ delay: 0.7 + index * 0.1, duration: 0.5 }}
-                  className="text-center px-1"
-                >
-                  <div className="text-xl sm:text-2xl md:text-3xl font-bold gradient-text">{stat.number}</div>
-                  <div className="text-xs sm:text-sm text-gray-600 mt-1 leading-tight">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
+            <div className="mt-14 grid grid-cols-3 gap-6 max-w-md pt-8 border-t border-white/10">
+              <div>
+                <div className="font-display text-2xl sm:text-3xl font-semibold text-white">
+                  <Counter target={50} suffix="+" />
+                </div>
+                <div className="text-xs sm:text-sm text-neutral-500 mt-1 leading-snug">Completed projects</div>
+              </div>
+              <div>
+                <div className="font-display text-2xl sm:text-3xl font-semibold text-white">
+                  <Counter target={100} suffix="%" />
+                </div>
+                <div className="text-xs sm:text-sm text-neutral-500 mt-1 leading-snug">Client satisfaction</div>
+              </div>
+              <div>
+                <div className="font-display text-2xl sm:text-3xl font-semibold text-white">24/7</div>
+                <div className="text-xs sm:text-sm text-neutral-500 mt-1 leading-snug">Support & maintenance</div>
+              </div>
+            </div>
           </motion.div>
 
-          {/* Right Content - 3D Card */}
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
+            className="lg:col-span-2 relative min-h-[420px] lg:min-h-0"
           >
-            {/* Hero positioning tag */}
+            <div className="relative h-full min-h-[420px] rounded-2xl overflow-hidden border border-white/10">
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: `url(${HERO_SIDE_IMG})` }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-ink-950 via-ink-950/50 to-ink-950/10" />
+              <div className="absolute inset-0 bg-gradient-to-br from-brand-900/50 via-transparent to-transparent" />
+
+              <motion.div
+                initial={{ opacity: 0, y: -10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.6 }}
+                className="absolute top-5 right-5 flex items-center gap-2 pl-2.5 pr-3.5 py-1.5 rounded-full bg-ink-950/80 backdrop-blur-md border border-white/10"
+              >
+                <span className="relative flex w-2 h-2">
+                  <span className="absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75 animate-ping" />
+                  <span className="relative inline-flex rounded-full w-2 h-2 bg-emerald-400" />
+                </span>
+                <span className="text-xs text-neutral-200">Available for new projects</span>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.75 }}
+                className="absolute top-5 left-5 flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-ink-950/80 backdrop-blur-md border border-white/10 text-xs text-neutral-200"
+              >
+                Riga, Latvia
+                <span className="w-1 h-1 rounded-full bg-brand-400" />
+                Remote worldwide
+              </motion.div>
+            </div>
+
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4, duration: 0.6 }}
-              className="absolute -top-16 left-1/2 transform -translate-x-1/2 z-10"
+              whileHover={{ y: -4 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+              className="absolute -bottom-8 left-4 right-4 sm:left-6 sm:right-6 rounded-2xl p-[1px] bg-brand-gradient bg-[length:200%_200%] animate-gradient-x shadow-brand-glow"
             >
-              <div className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full text-sm font-semibold text-white shadow-lg">
-                <Sparkles className="w-4 h-4 mr-2 text-blue-400" />
-                Enterprise Digital Solutions
-              </div>
-            </motion.div>
-            <motion.div
-              initial={{ rotateY: -15, rotateX: 5 }}
-              animate={{ rotateY: 0, rotateX: 0 }}
-              transition={{ duration: 1, delay: 0.5 }}
-              whileHover={{ 
-                rotateY: -5, 
-                rotateX: 5,
-                scale: 1.02,
-                transition: { duration: 0.3 }
-              }}
-              className="relative perspective-1000 preserve-3d mt-8 lg:mt-0"
-            >
-                    {/* Main Card */}
-                    <div className="bg-white/10 backdrop-blur-xl p-3 sm:p-4 md:p-6 lg:p-8 rounded-2xl sm:rounded-3xl shadow-2xl border border-white/20">
-                <div className="space-y-4 sm:space-y-6">
-                  <div className="flex w-full justify-center sm:justify-start">
-                    <BrandLogo
-                      variant="hero"
-                      asLink={false}
-                      title="BGDev"
-                      subtitle="Professional Web & Mobile Development"
-                    />
+              <div className="rounded-2xl bg-ink-950/95 backdrop-blur-md p-6">
+                <div className="label text-neutral-500 mb-4">Recent engagement</div>
+                <div className="font-display text-2xl text-white mb-1">BGFocus</div>
+                <div className="text-sm text-neutral-500 mb-6">AI-powered productivity platform</div>
+                <div className="grid grid-cols-3 gap-3 text-center">
+                  <div className="border border-white/10 rounded-lg py-3">
+                    <div className="font-display text-lg text-white">3</div>
+                    <div className="text-[10px] text-neutral-500 mt-1">platforms</div>
                   </div>
-                  
-                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
-                    {[
-                      { icon: "🤖", title: "AI Integration", desc: "GPT-4 & ChatGLM" },
-                      { icon: "📱", title: "React Native", desc: "Cross-platform" },
-                      { icon: "🔥", title: "Firebase", desc: "Real-time Data" },
-                      { icon: "⚡", title: "TypeScript", desc: "Type Safety" }
-                    ].map((feature, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, scale: 0.8 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.8 + index * 0.1 }}
-                        whileHover={{ scale: 1.05, y: -2 }}
-                            className="p-2 sm:p-3 md:p-4 bg-white/5 rounded-lg sm:rounded-xl border border-white/10 hover:bg-white/10 transition-all duration-300"
-                      >
-                        <div className="text-xl sm:text-2xl mb-1 sm:mb-2">{feature.icon}</div>
-                        <div className="text-sm sm:text-base font-semibold text-white">{feature.title}</div>
-                        <div className="text-xs sm:text-sm text-gray-300">{feature.desc}</div>
-                      </motion.div>
-                    ))}
+                  <div className="border border-white/10 rounded-lg py-3">
+                    <div className="font-display text-lg text-white">AI</div>
+                    <div className="text-[10px] text-neutral-500 mt-1">assistant</div>
                   </div>
-                  
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.2 }}
-                          className="pt-3 sm:pt-4 border-t border-white/10"
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="text-xs sm:text-sm text-gray-600">Project Status</span>
-                      <div className="flex items-center space-x-2">
-                        <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        <span className="text-xs sm:text-sm font-medium text-green-600">Active</span>
-                      </div>
-                    </div>
-                  </motion.div>
+                  <div className="border border-white/10 rounded-lg py-3">
+                    <div className="font-display text-lg text-white">RT</div>
+                    <div className="text-[10px] text-neutral-500 mt-1">analytics</div>
+                  </div>
                 </div>
               </div>
-
-              {/* Floating Elements */}
-              <motion.div
-                animate={{ 
-                  y: [-10, 10, -10],
-                  rotate: [0, 5, 0]
-                }}
-                transition={{ 
-                  duration: 4,
-                  repeat: Infinity,
-                  ease: [0.42, 0, 0.58, 1]
-                }}
-                className="absolute -top-4 -right-4 w-16 h-16 bg-gradient-to-r from-yellow-400 to-orange-500 rounded-2xl flex items-center justify-center shadow-lg"
-              >
-                <Sparkles className="w-8 h-8 text-white" />
-              </motion.div>
-
-              <motion.div
-                animate={{ 
-                  y: [10, -10, 10],
-                  rotate: [0, -5, 0]
-                }}
-                transition={{ 
-                  duration: 3,
-                  repeat: Infinity,
-                  ease: [0.42, 0, 0.58, 1],
-                  delay: 1
-                }}
-                className="absolute -bottom-4 -left-4 w-12 h-12 bg-gradient-to-r from-green-400 to-blue-500 rounded-xl flex items-center justify-center shadow-lg"
-              >
-                <Zap className="w-6 h-6 text-white" />
-              </motion.div>
             </motion.div>
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5, duration: 0.6 }}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-      >
-        <motion.div
-          animate={{ y: [0, 10, 0] }}
-          transition={{ duration: 2, repeat: Infinity }}
-          className="w-6 h-10 border-2 border-gray-400 rounded-full flex justify-center"
-        >
-          <motion.div
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-1 h-3 bg-gray-400 rounded-full mt-2"
-          />
-        </motion.div>
-      </motion.div>
+      <div className="relative border-t border-white/10 mt-20 lg:mt-16 py-6 overflow-hidden">
+        <div className="flex whitespace-nowrap animate-marquee">
+          {marqueeItems.map((t, i) => (
+            <span key={`${t}-${i}`} className="mx-6 text-neutral-600 label flex items-center gap-6">
+              {t}
+              <span className="w-1 h-1 rounded-full bg-brand-400/70" />
+            </span>
+          ))}
+        </div>
+      </div>
     </section>
   );
 };

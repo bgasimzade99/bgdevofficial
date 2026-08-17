@@ -3,9 +3,9 @@ import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-route
 import './App.css';
 import Header from './components/Header';
 import Hero from './components/Hero';
+import TrustBar from './components/TrustBar';
 import About from './components/About';
 import Services from './components/Services';
-import Skills from './components/Skills';
 import Projects from './components/Projects';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
@@ -18,9 +18,9 @@ function HomePage() {
   return (
     <>
       <Hero />
+      <TrustBar />
       <About />
       <Services />
-      <Skills />
       <Projects />
       <Contact />
     </>
@@ -63,6 +63,7 @@ function App() {
     <Router>
       <GitHubPagesRedirect />
       <div className="App">
+        <div className="grain-overlay" aria-hidden="true" />
         <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />

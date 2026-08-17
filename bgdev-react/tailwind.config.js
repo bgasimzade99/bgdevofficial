@@ -6,100 +6,79 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: {
-          50: '#eff6ff',
-          100: '#dbeafe',
-          200: '#bfdbfe',
-          300: '#93c5fd',
-          400: '#60a5fa',
-          500: '#3b82f6',
-          600: '#2563eb',
-          700: '#1d4ed8',
-          800: '#1e40af',
-          900: '#1e3a8a',
+        ink: {
+          950: '#070A10',
+          900: '#0A0E16',
+          850: '#0E131C',
+          800: '#141A24',
+          700: '#1E2530',
         },
-        secondary: {
-          50: '#f8fafc',
-          100: '#f1f5f9',
-          200: '#e2e8f0',
-          300: '#cbd5e1',
-          400: '#94a3b8',
-          500: '#64748b',
-          600: '#475569',
-          700: '#334155',
-          800: '#1e293b',
-          900: '#0f172a',
-        }
+        brand: {
+          50: '#EAF3FF',
+          100: '#CFE6FF',
+          200: '#9FCBFF',
+          300: '#6FB0FF',
+          400: '#3B93F0',
+          500: '#2277D6',
+          600: '#175FB3',
+          700: '#134C8F',
+          800: '#0F3B6E',
+          900: '#0B2C52',
+        },
       },
       fontFamily: {
-        'sans': ['Inter', 'system-ui', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        display: ['"Bricolage Grotesque"', 'Inter', 'system-ui', 'sans-serif'],
+      },
+      backgroundImage: {
+        'brand-gradient': 'linear-gradient(120deg, #3B93F0 0%, #134C8F 100%)',
+        'brand-gradient-soft': 'linear-gradient(120deg, rgba(59,147,240,0.14) 0%, rgba(19,76,143,0.14) 100%)',
+        'dot-grid': 'radial-gradient(circle at 1px 1px, rgba(255,255,255,0.07) 1px, transparent 0)',
+        'grain': "url(\"data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.4'/%3E%3C/svg%3E\")",
+      },
+      backgroundSize: {
+        'dot-grid': '30px 30px',
+        'grain-size': '120px 120px',
       },
       animation: {
-        'fade-in': 'fadeIn 0.6s ease-in-out',
-        'fade-in-up': 'fadeInUp 0.6s ease-out',
-        'fade-in-down': 'fadeInDown 0.6s ease-out',
-        'slide-in-left': 'slideInLeft 0.6s ease-out',
-        'slide-in-right': 'slideInRight 0.6s ease-out',
-        'scale-in': 'scaleIn 0.6s ease-out',
-        'float': 'float 3s ease-in-out infinite',
-        'pulse-slow': 'pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite',
-        'bounce-slow': 'bounce 2s infinite',
-        'spin-slow': 'spin 3s linear infinite',
-        'gradient': 'gradient 15s ease infinite',
-        'shimmer': 'shimmer 2s linear infinite',
+        'blob-a': 'blobA 22s ease-in-out infinite',
+        'blob-b': 'blobB 26s ease-in-out infinite',
+        'marquee': 'marquee 32s linear infinite',
+        'fade-in-up': 'fadeInUp 0.7s cubic-bezier(0.16,1,0.3,1) both',
+        'gradient-x': 'gradientX 6s ease infinite',
+        'pulse-soft': 'pulseSoft 3s ease-in-out infinite',
       },
       keyframes: {
-        fadeIn: {
-          '0%': { opacity: '0' },
-          '100%': { opacity: '1' },
+        blobA: {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(60px, -40px) scale(1.15)' },
+          '66%': { transform: 'translate(-30px, 30px) scale(0.95)' },
+        },
+        blobB: {
+          '0%, 100%': { transform: 'translate(0px, 0px) scale(1)' },
+          '33%': { transform: 'translate(-50px, 40px) scale(1.1)' },
+          '66%': { transform: 'translate(40px, -30px) scale(0.9)' },
+        },
+        marquee: {
+          '0%': { transform: 'translateX(0)' },
+          '100%': { transform: 'translateX(-50%)' },
         },
         fadeInUp: {
-          '0%': { opacity: '0', transform: 'translateY(30px)' },
+          '0%': { opacity: '0', transform: 'translateY(20px)' },
           '100%': { opacity: '1', transform: 'translateY(0)' },
         },
-        fadeInDown: {
-          '0%': { opacity: '0', transform: 'translateY(-30px)' },
-          '100%': { opacity: '1', transform: 'translateY(0)' },
-        },
-        slideInLeft: {
-          '0%': { opacity: '0', transform: 'translateX(-30px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        slideInRight: {
-          '0%': { opacity: '0', transform: 'translateX(30px)' },
-          '100%': { opacity: '1', transform: 'translateX(0)' },
-        },
-        scaleIn: {
-          '0%': { opacity: '0', transform: 'scale(0.9)' },
-          '100%': { opacity: '1', transform: 'scale(1)' },
-        },
-        float: {
-          '0%, 100%': { transform: 'translateY(0px)' },
-          '50%': { transform: 'translateY(-10px)' },
-        },
-        gradient: {
+        gradientX: {
           '0%, 100%': { backgroundPosition: '0% 50%' },
           '50%': { backgroundPosition: '100% 50%' },
         },
-        shimmer: {
-          '0%': { transform: 'translateX(-100%)' },
-          '100%': { transform: 'translateX(100%)' },
+        pulseSoft: {
+          '0%, 100%': { opacity: '0.6' },
+          '50%': { opacity: '1' },
         },
       },
-      backgroundImage: {
-        'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
-        'hero-pattern': "url('data:image/svg+xml,%3Csvg width=\"60\" height=\"60\" viewBox=\"0 0 60 60\" xmlns=\"http://www.w3.org/2000/svg\"%3E%3Cg fill=\"none\" fill-rule=\"evenodd\"%3E%3Cg fill=\"%239C92AC\" fill-opacity=\"0.1\"%3E%3Ccircle cx=\"30\" cy=\"30\" r=\"2\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')",
-      },
-      backdropBlur: {
-        xs: '2px',
-      },
       boxShadow: {
-        'glass': '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
-        'glass-inset': 'inset 0 1px 0 0 rgba(255, 255, 255, 0.05)',
-        'neon': '0 0 5px theme(colors.primary.500), 0 0 10px theme(colors.primary.500), 0 0 15px theme(colors.primary.500)',
-        'neon-lg': '0 0 10px theme(colors.primary.500), 0 0 20px theme(colors.primary.500), 0 0 30px theme(colors.primary.500)',
-      }
+        'brand-glow': '0 0 0 1px rgba(59,147,240,0.25), 0 8px 40px -8px rgba(59,147,240,0.4)',
+      },
     },
   },
   plugins: [],
