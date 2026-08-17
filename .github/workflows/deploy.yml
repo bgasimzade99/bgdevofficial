@@ -39,3 +39,4 @@ jobs:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: bgdev-react/build
           force_orphan: true
+          cname: bgdevofficial.com
