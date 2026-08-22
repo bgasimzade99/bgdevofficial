@@ -6,22 +6,97 @@
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://bgdevofficial.com/#about</loc>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-  </url>
-  <url>
-    <loc>https://bgdevofficial.com/#services</loc>
+    <loc>https://bgdevofficial.com/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
   <url>
-    <loc>https://bgdevofficial.com/#projects</loc>
+    <loc>https://bgdevofficial.com/contact</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/trusted-web-development-agency-for-smes-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/ai-chatbots-small-business-guide-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/n8n-vs-zapier-vs-make-automation-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/nvidia-rtx-vs-amd-ai-gpu-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/saas-trends-2026-2027</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/claude-vs-gpt-vs-gemini-business-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/elon-musk-xai-grok-ai-startups-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/ai-integration-roadmap-for-smes-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/website-mobile-app-cost-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/get-recommended-by-chatgpt-google-ai-overviews-geo-guide-2026</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://bgdevofficial.com/#contact</loc>
+    <loc>https://bgdevofficial.com/blog/ai-agents-vs-ai-chatbots-difference-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/vertical-vs-horizontal-saas-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/founder-lessons-shipping-fast-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/best-ai-tools-small-business-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/website-redesign-checklist-2026</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://bgdevofficial.com/blog/mobile-app-vs-website-first-2026</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>

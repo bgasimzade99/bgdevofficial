@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
@@ -21,11 +22,12 @@ const Header: React.FC = () => {
   };
 
   const navItems = [
-    { href: '#home', label: 'Home' },
-    { href: '#about', label: 'About' },
-    { href: '#services', label: 'Services' },
-    { href: '#projects', label: 'Work' },
-    { href: '#contact', label: 'Contact' },
+    { href: '/', label: 'Home' },
+    { href: '/about', label: 'About' },
+    { href: '/#services', label: 'Services' },
+    { href: '/#projects', label: 'Work' },
+    { href: '/blog', label: 'Blog' },
+    { href: '/contact', label: 'Contact' },
   ];
 
   return (
@@ -45,21 +47,21 @@ const Header: React.FC = () => {
 
           <nav className="hidden lg:flex items-center space-x-8">
             {navItems.map((item) => (
-              <a
+              <Link
                 key={item.href}
-                href={item.href}
+                to={item.href}
                 className="relative text-sm text-neutral-400 hover:text-white font-medium transition-colors duration-200 group"
               >
                 {item.label}
                 <span className="absolute -bottom-1.5 left-0 w-0 h-px bg-brand-gradient transition-all duration-300 group-hover:w-full" />
-              </a>
+              </Link>
             ))}
           </nav>
 
-          <a href="#contact" className="hidden lg:inline-flex btn-primary py-2.5 px-5 text-sm group">
+          <Link to="/contact" className="hidden lg:inline-flex btn-primary py-2.5 px-5 text-sm group">
             Start a project
             <ArrowUpRight className="ml-1.5 w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-          </a>
+          </Link>
 
           <button
             onClick={toggleMenu}
@@ -83,25 +85,28 @@ const Header: React.FC = () => {
             <nav className="container-custom py-6">
               <div className="flex flex-col space-y-4">
                 {navItems.map((item, index) => (
-                  <motion.a
+                  <motion.div
                     key={item.href}
-                    href={item.href}
                     initial={{ opacity: 0, x: -12 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    onClick={() => setIsMenuOpen(false)}
-                    className="text-neutral-300 hover:text-white font-medium py-1 transition-colors duration-200"
                   >
-                    {item.label}
-                  </motion.a>
+                    <Link
+                      to={item.href}
+                      onClick={() => setIsMenuOpen(false)}
+                      className="text-neutral-300 hover:text-white font-medium py-1 transition-colors duration-200 block"
+                    >
+                      {item.label}
+                    </Link>
+                  </motion.div>
                 ))}
-                <a
-                  href="#contact"
+                <Link
+                  to="/contact"
                   onClick={() => setIsMenuOpen(false)}
                   className="btn-primary mt-2 text-center"
                 >
                   Start a project
-                </a>
+                </Link>
               </div>
             </nav>
           </motion.div>

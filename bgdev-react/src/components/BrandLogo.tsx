@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 type BrandVariant = 'header' | 'hero' | 'footer';
 
@@ -81,10 +82,10 @@ const BrandLogo: React.FC<BrandLogoProps> = ({
 
   if (asLink) {
     return (
-      <a href="#home" className={wrap}>
+      <Link to="/" className={wrap}>
         <span className="sr-only">{title} Home</span>
         {row}
-      </a>
+      </Link>
     );
   }
 

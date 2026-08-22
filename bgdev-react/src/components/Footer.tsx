@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Mail, Phone, MapPin, ArrowUp, Linkedin, Instagram } from 'lucide-react';
 import BrandLogo from './BrandLogo';
 
@@ -15,16 +16,17 @@ const Footer: React.FC = () => {
 
   const footerLinks = {
     company: [
-      { label: 'About us', href: '#about' },
-      { label: 'Services', href: '#services' },
-      { label: 'Work', href: '#projects' },
-      { label: 'Contact', href: '#contact' },
+      { label: 'About us', href: '/about' },
+      { label: 'Services', href: '/#services' },
+      { label: 'Work', href: '/#projects' },
+      { label: 'Blog', href: '/blog' },
+      { label: 'Contact', href: '/contact' },
     ],
     services: [
-      { label: 'Web development', href: '#services' },
-      { label: 'Mobile applications', href: '#services' },
-      { label: 'AI integration', href: '#services' },
-      { label: 'SEO & marketing', href: '#services' },
+      { label: 'Web development', href: '/#services' },
+      { label: 'Mobile applications', href: '/#services' },
+      { label: 'AI integration', href: '/#services' },
+      { label: 'SEO & marketing', href: '/#services' },
     ],
   };
 
@@ -69,9 +71,9 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {footerLinks.company.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-neutral-500 hover:text-white transition-colors duration-200 text-sm">
+                  <Link to={link.href} className="text-neutral-500 hover:text-white transition-colors duration-200 text-sm">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -82,9 +84,9 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {footerLinks.services.map((link) => (
                 <li key={link.label}>
-                  <a href={link.href} className="text-neutral-500 hover:text-white transition-colors duration-200 text-sm">
+                  <Link to={link.href} className="text-neutral-500 hover:text-white transition-colors duration-200 text-sm">
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -113,9 +115,9 @@ const Footer: React.FC = () => {
           <p className="text-neutral-600 text-sm">© 2026 BGDev. All rights reserved.</p>
 
           <div className="flex items-center gap-6 text-sm">
-            <a href="/privacy-policy" className="text-neutral-500 hover:text-white transition-colors">Privacy policy</a>
-            <a href="/terms-of-service" className="text-neutral-500 hover:text-white transition-colors">Terms of service</a>
-            <a href="/cookie-policy" className="text-neutral-500 hover:text-white transition-colors">Cookie policy</a>
+            <Link to="/privacy-policy" className="text-neutral-500 hover:text-white transition-colors">Privacy policy</Link>
+            <Link to="/terms-of-service" className="text-neutral-500 hover:text-white transition-colors">Terms of service</Link>
+            <Link to="/cookie-policy" className="text-neutral-500 hover:text-white transition-colors">Cookie policy</Link>
           </div>
 
           <button

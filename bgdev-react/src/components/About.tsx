@@ -1,5 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 import { Users, Award, Clock, Target, Check, ArrowRight, Compass } from 'lucide-react';
 
 const MISSION_BG = 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?q=80&w=1600&auto=format&fit=crop';
@@ -75,13 +76,13 @@ const About: React.FC = () => {
                 </div>
               ))}
             </div>
-            <a
-              href="#contact"
+            <Link
+              to="/about"
               className="inline-flex items-center text-sm text-gradient-brand font-semibold mt-8 group"
             >
               Learn more
               <ArrowRight className="ml-2 w-4 h-4 text-brand-300 group-hover:translate-x-0.5 transition-transform" />
-            </a>
+            </Link>
           </motion.div>
 
           <motion.div
